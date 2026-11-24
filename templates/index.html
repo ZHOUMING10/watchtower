@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watchtower · 设备监测台</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div>
+        <h1>Watchtower</h1>
+        <p class="sub">实验室机房 / 小店冷柜 · 温湿度监测</p>
+      </div>
+      <div id="conn" class="conn conn--unknown">连接中</div>
+    </header>
+
+    <p id="error" class="error" hidden></p>
+
+    <section class="cards">
+      <article class="card">
+        <span class="label">当前温度</span>
+        <div><strong id="temp" class="value">--</strong><span class="unit">°C</span></div>
+        <span class="hint">超过阈值标红</span>
+      </article>
+      <article class="card">
+        <span class="label">当前湿度</span>
+        <div><strong id="humid" class="value">--</strong><span class="unit">%</span></div>
+        <span class="hint">最近一次上报</span>
+      </article>
+      <article class="card">
+        <span class="label">最后上报</span>
+        <div><strong id="last" class="value value--time">--</strong></div>
+        <span class="hint">超时未上报判离线</span>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>高温告警</h2>
+        <span id="alert-count" class="badge">0</span>
+      </div>
+      <ul id="alerts" class="alerts"><li class="empty">等待数据</li></ul>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>最近读数</h2>
+        <span id="updated" class="muted">--</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>时间</th><th>设备</th><th>温度</th><th>湿度</th></tr>
+          </thead>
+          <tbody id="rows"><tr><td colspan="4" class="empty">等待数据</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="foot">
+      每 5 秒自动刷新 · 告警阈值 <span id="threshold">--</span> °C ·
+      超过 <span id="offline">--</span> 秒无上报判定离线
+    </footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

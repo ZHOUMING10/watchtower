@@ -1,0 +1,21 @@
+# 本地配置与密钥
+.env
+esp32/*/secrets.h
+
+# 运行产物
+*.db
+*.db-journal
+logs/
+__pycache__/
+*.pyc
+.venv/
+gunicorn.ctl
+
+# 只在本机使用的运维脚本（内含真实服务器地址与本地路径）
+*.bat
+
+# 个人笔记与计划，不对外
+00-*.md
+NEXT.md
+LEARNING_PLAN.md
+deploy/SECURITY-TRACK.md
